@@ -27,7 +27,7 @@ const CORPOS_EMAIL = {
   'p-reem-neg': (nome, link) =>
     `Olá, ${nome}!\n\n` +
     `Sua solicitação de reembolso foi finalizada.\n` +
-    `Sabemos que esse pode não ter sido o resultado esperado, e por isso sua opinião é muito importante para nós. ` +
+    `Sabemos que esse pode não ter sido o resultado esperado, e por isso sua opinião é muito importante para nós.\n\n` +
     `Conte como foi sua experiência com o nosso atendimento.\n\n` +
     `👉 Avaliar experiência: ${link}`,
 };
