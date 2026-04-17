@@ -5,11 +5,15 @@ const ZENDESK_SUBDOMAIN  = process.env.ZENDESK_SUBDOMAIN;
 const ZENDESK_EMAIL      = process.env.ZENDESK_EMAIL;
 const ZENDESK_API_TOKEN  = process.env.ZENDESK_API_TOKEN;
 
+const REQUIRED_ENV = ['INDECX_COMPANY_KEY', 'ZENDESK_SUBDOMAIN', 'ZENDESK_EMAIL', 'ZENDESK_API_TOKEN'];
+const missing = REQUIRED_ENV.filter(k => !process.env[k]);
+if (missing.length) throw new Error(`Variáveis de ambiente faltando: ${missing.join(', ')}`);
+
 const INDECX_BASE_URL = 'https://indecx.com/v3/integrations';
 
 // TODO: substituir pelos valores reais quando tiver
 const TAG_TO_ACTION = {
-  'pesquisa-reembolso': 'ACTION_ID_AQUI',
+  'pesquisa-reembolso': 'L85YSV7C',
 };
 
 const CORPOS_EMAIL = {
@@ -123,11 +127,11 @@ module.exports = async (req, res) => {
       const actionId = TAG_TO_ACTION[tag_pesquisa];
 
       if (!actionId) {
-        return res.status(200).json({ success: false, error: 'Tag não mapeada' });
+        return res.status(400).json({ success: false, error: 'Tag não mapeada' });
       }
 
       if (!ticket_id) {
-        return res.status(200).json({ success: false, error: 'Ticket ID não informado' });
+        return res.status(400).json({ success: false, error: 'Ticket ID não informado' });
       }
 
       const dadosIndecx = {
